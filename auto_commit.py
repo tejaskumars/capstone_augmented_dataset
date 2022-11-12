@@ -1,9 +1,10 @@
 import os 
 from pathlib import Path
 import shutil
+import time
 
-all_images = os.listdir(r"D:\movies\work\capstone\CapstoneDataset_Resized\resized\all_resized")
-all_images_path = [os.path.join(r"D:\movies\work\capstone\CapstoneDataset_Resized\resized\all_resized" , i) for i in all_images]
+all_images = os.listdir(r"D:\movies\work\capstone\augmented_images\all_augmented")
+all_images_path = [os.path.join(r"D:\movies\work\capstone\augmented_images\all_augmented" , i) for i in all_images]
 
 
 all_images_batches = [all_images_path[i:i+5000] for i in range(0,len(all_images_path) , 5000)]
@@ -21,6 +22,7 @@ for i , batch in enumerate(all_images_batches):
     print("adding images to git...")
     os.system("git add .")
     print("added images to git...")
-    os.system(f'git commit -m "automated commit adding {batch_len} images of batch {i}"')
+    os.system(f'git commit -m "automated commit adding {batch_len} augmented images of batch {i}"')
     os.system("git push origin main")
     print(f"\n\npushed the brach {i}\n\n")
+    time.sleep(2)
